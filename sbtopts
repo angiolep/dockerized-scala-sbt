@@ -1,0 +1,9 @@
+
+-J-XX:ReservedCodeCacheSize=256m
+-J-XX:MaxMetaspaceSize=512m
+-J-Xss2M
+-J-Xms512M
+-J-Xmx4G
+-sbt-dir   /cache/.sbt
+-sbt-boot  /cache/.sbt/boot
+-ivy       /cache/.ivy2
