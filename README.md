@@ -11,8 +11,21 @@ This Docker image provides:
 Build and tag this Docker image as follows:
 
 ```bash
-docker build -t scala-sbt:1.2.3 .
+docker image build -t scala-sbt:1.2.3 .
 ```
+
+
+## example
+Under the `example` directory you will find a simple example of usage.
+
+```bash
+cd example
+./sbt
+```
+
+> NOTE  
+> The `./sbt` wrapper script will run the _"dockerized"_ SBT provided by this project.
+
 
 ## usage
 Use this Docker image as follows:

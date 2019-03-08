@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+#
+# This SBT wrapper script is meant to run a "containerized" SBT instance
+# joining a Docker user-defined network.
+#
+selfdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+docker volume create cache
+
+docker container run -it --rm \
+  --name scala-sbt \
+  --volume $selfdir:/project \
+  --volume cache:/cache \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  scala-sbt:1.2.3 $*
