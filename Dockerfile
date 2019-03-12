@@ -26,9 +26,8 @@ RUN set -x \
     openjdk8="$JAVA_ALPINE_VERSION" \
  && [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
-
-ENV SBT_VERSION="1.2.3" \
-    SBT_HOME="/opt/sbt" \
+ARG SBT_VERSION="1.2.3"
+ENV SBT_HOME="/opt/sbt" \
     SBT_CACHE="/cache" \
     PATH="/opt/sbt/bin:$PATH"
 
