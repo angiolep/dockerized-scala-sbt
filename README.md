@@ -12,7 +12,7 @@ Build and tag this Docker image as follows:
 
 ```bash
 docker image build \
-  --build-arg SBT_VERSION=0.13.18 \
+  --build-arg version=0.13.18 \
   --tag scala-sbt:0.13.18 \
   .
 ```
@@ -21,7 +21,7 @@ Or, if you wish to build something newer, then do:
 
 ```bash
 docker image build \
-  --build-arg SBT_VERSION=1.2.8 \
+  --build-arg version=1.2.8 \
   --tag scala-sbt:1.2.8 \
   .
 ```

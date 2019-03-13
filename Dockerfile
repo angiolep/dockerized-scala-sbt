@@ -26,8 +26,10 @@ RUN set -x \
     openjdk8="$JAVA_ALPINE_VERSION" \
  && [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
-ARG SBT_VERSION="1.2.3"
-ENV SBT_HOME="/opt/sbt" \
+# TODO ENV version
+ARG version="1.2.8"
+ENV SBT_VERSION=$version \
+    SBT_HOME="/opt/sbt" \
     SBT_CACHE="/cache" \
     PATH="/opt/sbt/bin:$PATH"
 
@@ -39,12 +41,12 @@ ADD sbtopts /etc/sbt/sbtopts
 RUN set -ex && \
     apk -U upgrade && \
     apk --no-cache add vim bash curl gzip tar && \
-    curl -OL https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz && \
+    curl -OL https://github.com/sbt/sbt/releases/download/v${version}/sbt-${version}.tgz && \
     mkdir -p /opt && \
-    tar xvfz sbt-${SBT_VERSION}.tgz -C /opt && \
-    rm -f sbt-${SBT_VERSION}.tgz && \
-    mv /opt/sbt/ /opt/sbt-${SBT_VERSION} && \
-    ln -s sbt-${SBT_VERSION} /opt/sbt && \
+    tar xvfz sbt-${version}.tgz -C /opt && \
+    rm -f sbt-${version}.tgz && \
+    mv /opt/sbt/ /opt/sbt-${version} && \
+    ln -s sbt-${version} /opt/sbt && \
     mkdir -p /etc/sbt ${SBT_CACHE} && \
     \
     # Clean-up
