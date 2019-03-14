@@ -30,12 +30,13 @@ RUN set -x \
 ARG version="1.2.8"
 ENV SBT_VERSION=$version \
     SBT_HOME="/opt/sbt" \
-    SBT_CACHE="/cache" \
     PATH="/opt/sbt/bin:$PATH"
 
-WORKDIR /project
-
 ADD sbtopts /etc/sbt/sbtopts
+
+RUN major=$(echo "$version" | cut -d '.' -f 1) && \
+    minor=$(echo "$version" | cut -d '.' -f 2) && \
+    echo "-J-Dsbt.dependency.base=/cache/.sbt/${major}.${minor}/dependency" >> /etc/sbt/sbtopts
 
 # Install SBT - the interactive build tool
 RUN set -ex && \
@@ -47,7 +48,6 @@ RUN set -ex && \
     rm -f sbt-${version}.tgz && \
     mv /opt/sbt/ /opt/sbt-${version} && \
     ln -s sbt-${version} /opt/sbt && \
-    mkdir -p /etc/sbt ${SBT_CACHE} && \
     \
     # Clean-up
     rm -rf /var/cache/apk/*

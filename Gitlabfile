@@ -1,0 +1,9 @@
+ARG version="1.2.8"
+FROM scala-sbt:$version
+
+LABEL description="This image provides a minimal Linux setup to perform Scala SBT-based builds of applications for the JVM - Java Virtual Machine performed by GitLab build runners"
+LABEL maintainer="pangiole@tibco.com"
+
+WORKDIR /root
+ENTRYPOINT []
+CMD []

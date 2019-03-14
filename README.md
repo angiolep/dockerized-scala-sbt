@@ -7,26 +7,41 @@ This Docker image provides:
 * [Linux Alpine](https://www.alpinelinux.org)  3.8
 
 
-## build
-Build and tag this Docker image as follows:
+## Build
+You can build and tag this Docker image either for local usage or for GitLab.
+
+### Local
 
 ```bash
+version="0.13.18"
 docker image build \
-  --build-arg version=0.13.18 \
-  --tag scala-sbt:0.13.18 \
+  --build-arg version=$version \
+  --tag scala-sbt:$version \
   .
 ```
+You can list available versions at https://github.com/sbt/sbt/releases
 
-Or, if you wish to build something newer, then do:
+### GitLab
 
 ```bash
+version="1.2.8"
+tag="registry.alpinedata.tech/pangiolet/scala-sbt:$version"
+
 docker image build \
-  --build-arg version=1.2.8 \
-  --tag scala-sbt:1.2.8 \
+  --build-arg version=$version \
+  --file Gitlabfile \
+  --tag $tag \
   .
+
+GITLAB_USERNAME="username"
+GITLAB_TOKEN="***********"
+docker login registry.alpinedata.tech
+
+docker push $tag
 ```
 
-## example
+
+## Example
 Under the `example` directory you will find a simple example of usage.
 
 ```bash
@@ -56,5 +71,5 @@ docker container run \
   --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
   --mount type=volume,src=cache,dst=/cache \
   --network docker.net \
-  scala-sbt:1.2.3
+  scala-sbt:1.2.8
 ```

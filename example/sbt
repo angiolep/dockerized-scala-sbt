@@ -9,8 +9,8 @@ selfdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 docker volume create cache
 
 docker container run -it --rm \
-  --name scala-sbt \
+  --name scala-sbt-example \
   --volume $selfdir:/project \
   --volume cache:/cache \
   --volume /var/run/docker.sock:/var/run/docker.sock \
-  scala-sbt:1.2.3 $*
+  scala-sbt:1.2.8 $*
