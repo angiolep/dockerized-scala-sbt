@@ -18,8 +18,20 @@ docker image build \
   --build-arg version=$version \
   --tag scala-sbt:$version \
   .
+
+docker image tag \
+  scala-sbt:$version \
+  registry.alpinedata.tech/pangiolet/scala-sbt:$version
+
+docker login \
+  registry.alpinedata.tech
+
+docker image push \
+  registry.alpinedata.tech/pangiolet/scala-sbt:$version
 ```
+
 You can list available versions at https://github.com/sbt/sbt/releases
+
 
 ### GitLab
 
@@ -30,14 +42,10 @@ tag="registry.alpinedata.tech/pangiolet/scala-sbt:$version"
 docker image build \
   --build-arg version=$version \
   --file Gitlabfile \
-  --tag $tag \
+  --tag $tag-gitlab \
   .
 
-GITLAB_USERNAME="username"
-GITLAB_TOKEN="***********"
-docker login registry.alpinedata.tech
-
-docker push $tag
+docker push $tag-gitlab
 ```
 
 
