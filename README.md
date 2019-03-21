@@ -2,9 +2,9 @@
 This Docker image provides:
 
 * [SBT - the interactive build tool](https://www.scala-sbt.org)
-* [OpenJDK](http://openjdk.java.net/)  1.8.0_191
+* [OpenJDK](http://openjdk.java.net/)  1.8.0_201
 * [GNU Bash](https://www.gnu.org/software/bash/)  4.4.19
-* [Linux Alpine](https://www.alpinelinux.org)  3.8
+* [Linux Alpine](https://www.alpinelinux.org)  3.9.2
 
 
 ## Build
